@@ -117,6 +117,9 @@ module Imageproxy
       format = options.format
       format = identify_format(file) unless format
       format = options.source unless format
+      if format.eql? "PAM"
+	      return { "Contenty-Type" => "image/webp" }
+      end
       format ? { "Content-Type" => MIME::Types.of(format).first.content_type } : {}
     end
 
